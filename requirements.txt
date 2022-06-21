@@ -1,1 +1,2 @@
-pandas
+pandas==1.4.2
+tensorflow==2.9.1
