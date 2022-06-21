@@ -9,7 +9,9 @@ from sklearn.model_selection import train_test_split
 def getCSVs(_dataset_path: str) -> dict[str, pd.DataFrame]:
     paths_CSV: set[str] = set(
         [join(_dataset_path, f) for f in listdir(_dataset_path) if isfile(join(_dataset_path, f))])
-    return {path_CSV: pd.read_csv(path_CSV) for path_CSV in paths_CSV}
+    dict_CSV: dict[str, pd.DataFrame] = {}
+
+    return {path_CSV: pd.read_csv(path_CSV, index_col=False) for path_CSV in paths_CSV}
 
 
 def getTrainTestValSplit(_dataset_path: str, _train_frac: float = 0.7, _test_frac: float = 0.2,
@@ -25,9 +27,11 @@ def getTrainTestValSplit(_dataset_path: str, _train_frac: float = 0.7, _test_fra
     test_CSVs: list[pd.DataFrame] = [CSVs[df] for df in test_filenames]
     val_CSVs: list[pd.DataFrame] = [CSVs[df] for df in val_filenames]
 
-    train_concat: pd.DataFrame = pd.concat(train_CSVs)
-    test_concat: pd.DataFrame = pd.concat(test_CSVs)
-    val_concat: pd.DataFrame = pd.DataFrame(val_CSVs)
+    train_concat: pd.DataFrame = pd.concat(train_CSVs, ignore_index=True)
+    test_concat: pd.DataFrame = pd.concat(test_CSVs, ignore_index=True)
+    val_concat: pd.DataFrame = pd.concat(val_CSVs, ignore_index=True)
+
+    train_concat: pd.DataFrame = train_concat.drop(columns=[_ for _ in train_concat.columns if 'Unnamed' in _])
 
     del CSVs, train_CSVs, test_CSVs, val_CSVs  # Release memory
 
