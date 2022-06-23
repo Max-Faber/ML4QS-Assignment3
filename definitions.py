@@ -10,3 +10,5 @@ main_activity_label_classes: dict[str, int] = {
     'label:FIX_running': 5,
     'label:BICYCLING': 6
 }
+batch_size: int = 512
+window_size: int = 10
