@@ -28,9 +28,11 @@ def preProcess(_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
     del _df
     return x, y
 
-if __name__ == '__main__':
-    train, test, val = getTrainTestValSplit(_dataset_path=f'{ROOT_DIR}/dataset/ExtraSensory/ExtraSensory.per_uuid_features_labels')
 
+if __name__ == '__main__':
+    train, test, val = getTrainTestValSplit(
+        _dataset_path=f'{ROOT_DIR}/dataset/ExtraSensory/ExtraSensory.per_uuid_features_labels'
+    )
 
     train_x, train_y = preProcess(_df=train)
     test_x, test_y = preProcess(_df=test)
