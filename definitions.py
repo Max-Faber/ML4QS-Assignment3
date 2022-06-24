@@ -10,5 +10,7 @@ main_activity_label_classes: dict[str, int] = {
     'label:FIX_running': 5,
     'label:BICYCLING': 6
 }
-batch_size: int = 512
+batch_size: int = 32
 window_size: int = 10
+early_stopping_patience: int = 5
+learning_rate: float = 0.0005
