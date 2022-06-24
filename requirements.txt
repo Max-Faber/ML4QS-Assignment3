@@ -5,3 +5,5 @@ jupyter==1.0.0
 matplotlib==3.5.2
 tensorflow-addons
 scipy==1.8.1
+seaborn
+pykalman
