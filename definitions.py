@@ -17,6 +17,43 @@ main_activity_label_classes: dict[str, int] = {
     'label:FIX_running': 5,
     'label:BICYCLING': 6
 }
+
+columns_to_keep = ["raw_acc:magnitude_stats:mean",
+"raw_acc:3d:mean_x",
+"raw_acc:3d:mean_y",
+"raw_acc:3d:mean_z",
+"proc_gyro:magnitude_stats:mean",
+"proc_gyro:3d:mean_x",
+"proc_gyro:3d:mean_y",
+"proc_gyro:3d:mean_z",
+"raw_magnet:magnitude_stats:mean",
+"raw_magnet:3d:mean_x",
+"raw_magnet:3d:mean_y",
+"raw_magnet:3d:mean_z",
+"watch_acceleration:magnitude_stats:mean",
+"watch_acceleration:3d:mean_x",
+"watch_acceleration:3d:mean_y",
+"watch_acceleration:3d:mean_z",
+"location_quick_features:lat_change",
+"location_quick_features:long_change",
+"audio_properties:max_abs_value",
+"discrete:app_state:is_active",
+"discrete:app_state:is_inactive",
+"discrete:battery_plugged:unplugged",
+"discrete:battery_plugged:is_charging",
+"discrete:on_the_phone:is_True",
+"discrete:wifi_status:is_reachable_via_wifi",
+"lf_measurements:battery_level",
+"discrete:time_of_day:between0and6",
+"discrete:time_of_day:between3and9",
+"discrete:time_of_day:between6and12",
+"discrete:time_of_day:between9and15",
+"discrete:time_of_day:between12and18",
+"discrete:time_of_day:between15and21",
+"discrete:time_of_day:between18and24",
+"discrete:time_of_day:between21and3",
+"label_source"]
+
 batch_size: int = 32
 window_size: int = 10
 early_stopping_patience: int = 5
