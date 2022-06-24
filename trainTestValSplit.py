@@ -9,7 +9,6 @@ from sklearn.model_selection import train_test_split
 def getCSVs(_dataset_path: str) -> dict[str, pd.DataFrame]:
     paths_CSV: set[str] = set(
         [join(_dataset_path, f) for f in listdir(_dataset_path) if isfile(join(_dataset_path, f))])
-    dict_CSV: dict[str, pd.DataFrame] = {}
 
     return {path_CSV: pd.read_csv(path_CSV, index_col=False) for path_CSV in paths_CSV}
 

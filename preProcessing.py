@@ -17,8 +17,8 @@ def addClassLabels(_df: pd.DataFrame) -> pd.DataFrame:
     return _df
 
 
-def removeLabels(_df: pd.DataFrame) -> pd.DataFrame:
-    return _df.drop(columns=[col for col in _df.columns if 'label:' in col])
+def removeLabels(_df: pd.DataFrame, except_cols: list[str]=[]) -> pd.DataFrame:
+    return _df.drop(columns=[col for col in _df.columns if 'label:' in col and not col in except_cols])
 
 def applyFourierTransformations(_df: pd.DataFrame) -> pd.DataFrame:
     for col in columns_fourier:
@@ -26,9 +26,9 @@ def applyFourierTransformations(_df: pd.DataFrame) -> pd.DataFrame:
     return _df
 
 
-def preProcess(_df: pd.DataFrame, add_cols = []) -> tuple[pd.DataFrame, pd.Series]:
+def preProcess(_df: pd.DataFrame, add_cols=[]) -> tuple[pd.DataFrame, pd.Series]:
     _df: pd.DataFrame = addClassLabels(_df=_df)
-    _df: pd.DataFrame = removeLabels(_df=_df)
+    _df: pd.DataFrame = removeLabels(_df=_df, except_cols=add_cols)
     _df: pd.DataFrame = _df[list(set(columns_to_keep).union({'target'}).union(set(add_cols)))]
     _df: pd.DataFrame = applyFourierTransformations(_df=_df)
 
