@@ -56,6 +56,25 @@ columns_to_keep: list[str] = [
     'label_source'
 ]
 
+columns_fourier: list[str] = [
+    'raw_acc:magnitude_stats:mean',
+    'raw_acc:3d:mean_x',
+    'raw_acc:3d:mean_y',
+    'raw_acc:3d:mean_z',
+    'proc_gyro:magnitude_stats:mean',
+    'proc_gyro:3d:mean_x',
+    'proc_gyro:3d:mean_y',
+    'proc_gyro:3d:mean_z',
+    'raw_magnet:magnitude_stats:mean',
+    'raw_magnet:3d:mean_x',
+    'raw_magnet:3d:mean_y',
+    'raw_magnet:3d:mean_z',
+    'watch_acceleration:magnitude_stats:mean',
+    'watch_acceleration:3d:mean_x',
+    'watch_acceleration:3d:mean_y',
+    'watch_acceleration:3d:mean_z'
+]
+
 batch_size: int = 32
 window_size: int = 10
 early_stopping_patience: int = 5

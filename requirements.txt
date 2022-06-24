@@ -4,3 +4,4 @@ scikit-learn==1.1.1
 jupyter==1.0.0
 matplotlib==3.5.2
 tensorflow-addons
+scipy==1.8.1

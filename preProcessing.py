@@ -1,8 +1,9 @@
 import pandas as pd
 
-from definitions import ROOT_DIR, main_activity_label_classes, columns_to_keep
+from definitions import ROOT_DIR, main_activity_label_classes, columns_to_keep, columns_fourier
 from trainTestValSplit import getTrainTestValSplit
 from copy import deepcopy
+from scipy.fft import fft
 
 
 def addClassLabels(_df: pd.DataFrame) -> pd.DataFrame:
@@ -20,11 +21,17 @@ def removeLabels(_df: pd.DataFrame) -> pd.DataFrame:
     return _df.drop(columns=[col for col in _df.columns if 'label:' in col])
 
 
+def applyFourierTransformations(_df: pd.DataFrame) -> pd.DataFrame:
+    for col in columns_fourier:
+        _df[f'{col}_fourier'] = fft(_df[col].values)
+    return _df
+
+
 def preProcess(_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
     _df: pd.DataFrame = addClassLabels(_df=_df)
     _df: pd.DataFrame = removeLabels(_df=_df)
-    _df: pd.DataFrame = _df.drop(columns=['timestamp'])
     _df: pd.DataFrame = _df[list(set(columns_to_keep).union({'target'}))]
+    _df: pd.DataFrame = applyFourierTransformations(_df=_df)
     y: pd.Series = _df['target']
     x: pd.DataFrame = _df.drop(columns=['target'])
     del _df
