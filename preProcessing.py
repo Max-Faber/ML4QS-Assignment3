@@ -24,7 +24,7 @@ def preProcess(_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
     _df: pd.DataFrame = addClassLabels(_df=_df)
     _df: pd.DataFrame = removeLabels(_df=_df)
     _df: pd.DataFrame = _df.drop(columns=['timestamp'])
-    _df: pd.DataFrame = _df[columns_to_keep]
+    _df: pd.DataFrame = _df[list(set(columns_to_keep).union({'target'}))]
     y: pd.Series = _df['target']
     x: pd.DataFrame = _df.drop(columns=['target'])
     del _df

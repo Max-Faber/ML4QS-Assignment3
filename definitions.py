@@ -40,6 +40,8 @@ columns_to_keep: list[str] = [
     'audio_properties:max_abs_value',
     'discrete:app_state:is_active',
     'discrete:app_state:is_inactive',
+    'discrete:battery_state:is_unplugged',
+    'discrete:battery_state:is_charging',
     'discrete:on_the_phone:is_True',
     'discrete:wifi_status:is_reachable_via_wifi',
     'lf_measurements:battery_level',
