@@ -55,19 +55,21 @@ def get_labels(windows):
     return predicted_labels
 
 
-def plot_val_loss_progress(history):
+def plot_val_loss_progress(history, export_dir: str = 'Plots'):
+    os.makedirs(export_dir, exist_ok=True)
     val_loss = history.history['val_loss']
     plt.plot(val_loss)
     plt.xlabel('Epoch')
     plt.ylabel('Validation Loss')
     plt.title('Validation Loss LSTM')
-    plt.savefig('convergence_val_loss_lstm.png')
+    plt.savefig(f'{export_dir}/convergence_val_loss_lstm.png')
 
 
-def plot_conf_matrix(gold_labels, predicted_labels):
+def plot_conf_matrix(gold_labels, predicted_labels, export_dir: str = 'Plots'):
+    os.makedirs(export_dir, exist_ok=True)
     plt.figure(figsize=(10, 10))
     plt.title('Confusion Matrix')
     sn.heatmap(
         pd.DataFrame(tf.math.confusion_matrix(gold_labels, predicted_labels), index=main_activity_label_classes.keys(),
-                     columns=main_activity_label_classes.keys()), annot=True, fmt='d', cmap='BuPu')
-    plt.savefig('confusion_matrix_lstm.png')
+                     columns=main_activity_label_classes.keys()), annot=True, fmt='d', cmap='hot')
+    plt.savefig(f'{export_dir}/confusion_matrix_lstm.png')
