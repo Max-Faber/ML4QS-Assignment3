@@ -20,7 +20,7 @@ main_activity_label_classes: dict[str, int] = {
 batch_size: int = 32
 window_size: int = 10
 early_stopping_patience: int = 5
-learning_rate: float = 0.0005
+learning_rate: float = 0.00005
 epochs: int = 100
 n_y = len(main_activity_label_classes.keys())
 
@@ -69,5 +69,5 @@ def plot_conf_matrix(gold_labels, predicted_labels):
     plt.title('Confusion Matrix')
     sn.heatmap(
         pd.DataFrame(tf.math.confusion_matrix(gold_labels, predicted_labels), index=main_activity_label_classes.keys(),
-                     columns=main_activity_label_classes.keys()), annot=True, fmt='d', cmap='hot')
+                     columns=main_activity_label_classes.keys()), annot=True, fmt='d', cmap='BuPu')
     plt.savefig('confusion_matrix_lstm.png')
