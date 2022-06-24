@@ -34,5 +34,6 @@ def fixMissingLabels() -> None:
         exportPath: str = path.replace(dirProcessed, dirProcessedOutliersWithLabels)
         dfProcessedOutliers.to_csv(exportPath, index=False)
 
+
 if __name__ == '__main__':
     fixMissingLabels()
