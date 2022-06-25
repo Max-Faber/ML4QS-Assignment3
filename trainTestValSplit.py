@@ -7,8 +7,7 @@ from sklearn.model_selection import train_test_split
 
 
 def getCSVs(_dataset_path: str) -> dict[str, pd.DataFrame]:
-    paths_CSV: set[str] = set(
-        [join(_dataset_path, f) for f in listdir(_dataset_path) if isfile(join(_dataset_path, f))])
+    paths_CSV: list[str] = [join(_dataset_path, f) for f in listdir(_dataset_path) if isfile(join(_dataset_path, f))]
 
     return {path_CSV: pd.read_csv(path_CSV, index_col=False) for path_CSV in paths_CSV}
 
@@ -17,6 +16,10 @@ def getTrainTestValSplit(_dataset_path: str, _train_frac: float = 0.7, _test_fra
                          _val_frac: float = 0.1) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     CSVs: dict[str, pd.DataFrame] = getCSVs(_dataset_path=_dataset_path)
     assert _train_frac + _test_frac + _val_frac <= 1.0
+
+    test = list(CSVs.keys())[0]
+
+    print(test)
 
     train_filenames, test_filenames = train_test_split(list(CSVs.keys()), test_size=_test_frac, train_size=_train_frac,
                                                        random_state=7342)
