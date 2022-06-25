@@ -131,4 +131,5 @@ def plot_conf_matrix(gold_labels, predicted_labels, export_dir: str = 'Plots', f
         pd.DataFrame(tf.math.confusion_matrix(gold_labels, predicted_labels), index=main_activity_label_classes.keys(),
                      columns=main_activity_label_classes.keys()), annot=True, fmt='d', cmap='PuBu')
     s.set(xlabel='GOLD', ylabel='PREDICTED')
+    plt.tight_layout()
     plt.savefig(f'{export_dir}/{file_name}')
