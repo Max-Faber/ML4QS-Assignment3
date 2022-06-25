@@ -17,10 +17,6 @@ def getTrainTestValSplit(_dataset_path: str, _train_frac: float = 0.7, _test_fra
     CSVs: dict[str, pd.DataFrame] = getCSVs(_dataset_path=_dataset_path)
     assert _train_frac + _test_frac + _val_frac <= 1.0
 
-    test = list(CSVs.keys())[0]
-
-    print(test)
-
     train_filenames, test_filenames = train_test_split(list(CSVs.keys()), test_size=_test_frac, train_size=_train_frac,
                                                        random_state=7342)
     val_filenames = set(CSVs.keys()) - set(train_filenames) - set(test_filenames)

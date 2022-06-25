@@ -123,11 +123,11 @@ def plot_val_loss_progress(history, export_dir: str = 'Plots', file_name: str = 
     plt.savefig(f'{export_dir}/{file_name}')
 
 
-def plot_conf_matrix(gold_labels, predicted_labels, export_dir: str = 'Plots', file_name: str = 'confusion_matrix_lstm.png'):
+def plot_conf_matrix(gold_labels, predicted_labels, export_dir: str = 'Plots', file_name: str = 'confusion_matrix_lstm.png', model_name: str = 'LSTM'):
     print(f'n_classes_conf_matrix: {sum(map(sum, tf.math.confusion_matrix(gold_labels, predicted_labels).numpy()))}')
     os.makedirs(export_dir, exist_ok=True)
     plt.figure(figsize=(10, 10))
-    plt.title('Confusion Matrix')
+    plt.title(f'Confusion Matrix {model_name}')
     s = sn.heatmap(
         pd.DataFrame(tf.math.confusion_matrix(gold_labels, predicted_labels), index=main_activity_label_classes.keys(),
                      columns=main_activity_label_classes.keys()), annot=True, fmt='d', cmap='PuBu')
