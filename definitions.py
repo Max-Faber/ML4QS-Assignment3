@@ -113,13 +113,13 @@ def get_labels(windows):
     return predicted_labels
 
 
-def plot_val_loss_progress(history, export_dir: str = 'Plots', file_name: str = 'convergence_val_loss_lstm.png'):
+def plot_val_loss_progress(history, export_dir: str = 'Plots', file_name: str = 'convergence_val_loss_lstm.png', model_name: str = 'LSTM'):
     os.makedirs(export_dir, exist_ok=True)
     val_loss = history.history['val_loss']
     plt.plot(val_loss)
     plt.xlabel('Epoch')
     plt.ylabel('Validation Loss')
-    plt.title('Validation Loss LSTM')
+    plt.title(f'Validation Loss {model_name}')
     plt.savefig(f'{export_dir}/{file_name}')
 
 
